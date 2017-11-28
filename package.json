@@ -28,7 +28,8 @@
     "jquery": "^3.2.1",
     "morgan": "~1.0.0",
     "rainbow-console": "0.0.2",
-    "request": "^2.78.0"
+    "request": "^2.78.0",
+    "sweetalert2": "^7.0.5"
   },
   "repository": {
     "type": "git",
