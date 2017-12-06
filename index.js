@@ -6,11 +6,15 @@ var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 require('rainbow-console');
 var request 	 = require("request");
+var multer = require('multer');
 //var cheerio = require('cheerio');
 var preueba = 'preuba';
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+//app.use(multer()); // for parsing multipart/form-data
 
 
 
@@ -25,6 +29,21 @@ app.get('/index', function(request, response) {
 
 app.get('/cool', function(request, response) {
   console.error('error ctm');
+  response.send(cool());
+});
+app.post('/login', function(request, response) {
+  console.error('login');
+  console.log(request.body);
+  var data = {};
+	console.log('body: ' + JSON.stringify(request.body));;
+  if(request.body.message == 'as@as.as'){
+    data.login = "ok";
+    console.info('correcto el email');
+    response.json(data);
+  }else {
+    console.error('FAIL mail');
+      response.send('FAIL mail');
+  }
   response.send(cool());
 });
 

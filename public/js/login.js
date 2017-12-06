@@ -1,6 +1,7 @@
 
 
-$('#login').click(function() {
+$('#login').click(function(e) {
+   e.preventDefault();
   swal({
         title: 'Submit Login to run ajax request',
         input: 'email',
@@ -28,7 +29,23 @@ $('#login').click(function() {
             title: 'Ajax request finished!',
             html: 'Submitted email: ' + result.value
           })
-        }
+          console.log('afuera');
+          console.log(result.value);
+          var data = {};
+					data.title = "title";
+					data.message = result.value;
+          console.log(data);
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				    contentType: 'application/json',
+            url: 'http://localhost:5000/login',
+            success: function(data) {
+                            console.log('success');
+                            console.log(JSON.stringify(data));
+                        }
+                    });
+            }
         })
 
 })
