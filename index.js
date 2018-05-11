@@ -30,8 +30,9 @@ app.get('/index', function(request, response) {
 app.get('/cool', function(request, response) {
   console.error('error ctm');
   response.send(cool());
+  response.render('pages/index');
 });
-app.post('/login', function(request, response) {
+app.post('/login', function(request, response, next) {
   console.error('login');
   console.log(request.body);
   var data = {};
@@ -39,7 +40,11 @@ app.post('/login', function(request, response) {
   if(request.body.message == 'as@as.as'){
     data.login = "ok";
     console.info('correcto el email');
-    response.json(data);
+
+    response.redirect('/cool');
+    console.log('salirSSWS');
+    response.send(data);
+
   }else {
     console.error('FAIL mail');
       response.send('FAIL mail');
